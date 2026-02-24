@@ -1,6 +1,0 @@
-src/pages/doctor/dashboard/components/AvailabilitySettings.tsx(31,53): error TS2339: Property 'isAvailableForConsultation' does not exist on type '{}'.
-src/pages/doctor/dashboard/components/AvailabilitySettings.tsx(32,40): error TS2339: Property 'availableDays' does not exist on type '{}'.
-src/pages/doctor/dashboard/components/AvailabilitySettings.tsx(33,39): error TS2339: Property 'workingHours' does not exist on type '{}'.
-src/pages/doctor/patients/index.tsx(5,1): error TS6133: 'Badge' is declared but its value is never read.
-src/pages/doctor/payments/index.tsx(13,1): error TS6133: 'logger' is declared but its value is never read.
-src/routes/PublicRoute.tsx(3,10): error TS6133: 'ROUTES' is declared but its value is never read.
