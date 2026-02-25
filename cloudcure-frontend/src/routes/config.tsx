@@ -43,6 +43,23 @@ import DoctorProfilePage from '@/pages/doctor/profile/index';
 import ProfilePage from '@/pages/profile/index';
 import VideoCallPage from '@/pages/video-call/VideoCallPage';
 
+// Public Info Pages (footer routes)
+import FeaturesPage from '@/pages/info/features';
+import PricingPage from '@/pages/info/pricing';
+import SecurityPage from '@/pages/info/security';
+import IntegrationsPage from '@/pages/info/integrations';
+import ApiDocsPage from '@/pages/info/api-docs';
+import AboutPage from '@/pages/info/about';
+import BlogPage from '@/pages/info/blog';
+import CareersPage from '@/pages/info/careers';
+import PressPage from '@/pages/info/press';
+import ContactPage from '@/pages/info/contact';
+import PrivacyPage from '@/pages/info/privacy';
+import TermsPage from '@/pages/info/terms';
+import HipaaPage from '@/pages/info/hipaa';
+import CookiePolicyPage from '@/pages/info/cookies';
+import GdprPage from '@/pages/info/gdpr';
+
 import type { RouteConfig } from '@/types';
 
 /**
@@ -236,6 +253,23 @@ export const routes: RouteConfig[] = [
     auth: true,
     layout: 'empty',
   },
+
+  // Public Info Routes (footer pages)
+  { path: '/features', element: <FeaturesPage />, auth: false, layout: 'empty' },
+  { path: '/pricing', element: <PricingPage />, auth: false, layout: 'empty' },
+  { path: '/security', element: <SecurityPage />, auth: false, layout: 'empty' },
+  { path: '/integrations', element: <IntegrationsPage />, auth: false, layout: 'empty' },
+  { path: '/api-docs', element: <ApiDocsPage />, auth: false, layout: 'empty' },
+  { path: '/about', element: <AboutPage />, auth: false, layout: 'empty' },
+  { path: '/blog', element: <BlogPage />, auth: false, layout: 'empty' },
+  { path: '/careers', element: <CareersPage />, auth: false, layout: 'empty' },
+  { path: '/press', element: <PressPage />, auth: false, layout: 'empty' },
+  { path: '/contact', element: <ContactPage />, auth: false, layout: 'empty' },
+  { path: '/privacy', element: <PrivacyPage />, auth: false, layout: 'empty' },
+  { path: '/terms', element: <TermsPage />, auth: false, layout: 'empty' },
+  { path: '/hipaa', element: <HipaaPage />, auth: false, layout: 'empty' },
+  { path: '/cookies', element: <CookiePolicyPage />, auth: false, layout: 'empty' },
+  { path: '/gdpr', element: <GdprPage />, auth: false, layout: 'empty' },
 ];
 
 /**

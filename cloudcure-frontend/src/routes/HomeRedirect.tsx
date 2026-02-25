@@ -1,7 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
-import { ROUTES, ROLES } from '@/constants';
+import { ROLES } from '@/constants';
 import { Loader2 } from 'lucide-react';
+import LandingPage from '@/pages/home';
 
 export function HomeRedirect(): React.ReactElement {
     const { user, isAuthenticated, isLoading } = useAuth();
@@ -15,9 +16,10 @@ export function HomeRedirect(): React.ReactElement {
     }
 
     if (!isAuthenticated || !user) {
-        return <Navigate to={ROUTES.LOGIN} replace />;
+        return <LandingPage />;
     }
 
+    // Authenticated → redirect to role-specific dashboard
     switch (user.role) {
         case ROLES.ADMIN:
             return <Navigate to="/admin/dashboard" replace />;
@@ -26,6 +28,6 @@ export function HomeRedirect(): React.ReactElement {
         case ROLES.PATIENT:
             return <Navigate to="/patient/dashboard" replace />;
         default:
-            return <Navigate to={ROUTES.UNAUTHORIZED} replace />;
+            return <Navigate to="/unauthorized" replace />;
     }
 }

@@ -30,6 +30,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps): React.React
     const { logout, user } = useAuth();
     const navigate = useNavigate();
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const profileRef = useRef<HTMLDivElement>(null);
     const sidebarRef = useRef<HTMLElement>(null);
 
     useOnClickOutside(sidebarRef, () => {
@@ -39,6 +41,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps): React.React
         if (isSidebarOpen && window.innerWidth < 1024) {
             setIsSidebarOpen(false);
         }
+    });
+
+    useOnClickOutside(profileRef, () => {
+        setIsProfileOpen(false);
     });
 
     const handleLogout = async (): Promise<void> => {
@@ -188,11 +194,53 @@ export function DashboardLayout({ children }: DashboardLayoutProps): React.React
                     <div className="flex items-center gap-3">
                         <NotificationCenter />
                         <div className="h-8 w-px bg-zinc-200 dark:bg-zinc-800 mx-1 hidden sm:block" />
-                        <div className="hidden sm:flex items-center gap-2 px-2">
-                            <div className="text-right flex flex-col">
-                                <span className="text-sm font-bold leading-none">{user?.name}</span>
-                                <span className="text-[10px] text-zinc-500 font-medium uppercase tracking-wider mt-0.5">{user?.role}</span>
-                            </div>
+
+                        {/* Profile Dropdown */}
+                        <div ref={profileRef} className="relative">
+                            <button
+                                onClick={() => setIsProfileOpen((prev) => !prev)}
+                                className="flex items-center gap-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all duration-200 hover:opacity-80"
+                                aria-label="Profile menu"
+                            >
+                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white text-xs font-bold shadow-md shadow-blue-500/20">
+                                    {user?.avatar ? (
+                                        <img
+                                            src={user.avatar}
+                                            alt={user.name}
+                                            className="w-full h-full rounded-full object-cover"
+                                        />
+                                    ) : (
+                                        user?.name?.charAt(0).toUpperCase() ?? <User className="h-4 w-4" />
+                                    )}
+                                </div>
+                            </button>
+
+                            {/* Dropdown */}
+                            {isProfileOpen && (
+                                <div className="absolute right-0 top-full mt-2 w-56 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl shadow-zinc-200/50 dark:shadow-black/40 z-50 overflow-hidden animate-[fadeInDown_0.15s_ease-out]">
+                                    {/* User info */}
+                                    <div className="px-4 py-3 border-b border-zinc-100 dark:border-zinc-800">
+                                        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 truncate">{user?.name}</p>
+                                        <p className="text-xs text-zinc-400 truncate">{user?.email}</p>
+                                        <span className="mt-1.5 inline-block px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-[10px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                                            {user?.role}
+                                        </span>
+                                    </div>
+                                    {/* Logout */}
+                                    <div className="p-2">
+                                        <button
+                                            onClick={() => {
+                                                setIsProfileOpen(false);
+                                                void handleLogout();
+                                            }}
+                                            className="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors duration-150"
+                                        >
+                                            <LogOut className="h-4 w-4" />
+                                            Sign Out
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </header>

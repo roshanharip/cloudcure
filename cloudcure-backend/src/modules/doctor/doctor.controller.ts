@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { Doctor, DoctorDocument } from './schemas/doctor.schema';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
-import { UpdateAvailabilityDto } from './dto/update-availability.dto';
+import { DoctorUpdateAvailabilityDto } from './dto/update-availability.dto';
 import { Model, Types } from 'mongoose';
 import { DoctorService } from './doctor.service';
 import { PaginationDto } from '@common/dto/pagination.dto';
@@ -44,7 +44,7 @@ export class DoctorController {
 
   @Roles(Role.DOCTOR)
   @Patch('availability')
-  updateAvailability(@Request() req: any, @Body() updateAvailabilityDto: UpdateAvailabilityDto) {
+  updateAvailability(@Request() req: any, @Body() updateAvailabilityDto: DoctorUpdateAvailabilityDto) {
     return this.doctorService.updateAvailability(req.user.sub, updateAvailabilityDto);
   }
 

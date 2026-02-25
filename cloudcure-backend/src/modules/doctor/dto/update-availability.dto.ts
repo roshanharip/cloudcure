@@ -1,7 +1,7 @@
 import { IsBoolean, IsOptional, IsArray, IsObject, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class UpdateAvailabilityDto {
+export class DoctorUpdateAvailabilityDto {
     @ApiProperty({ required: false })
     @IsOptional()
     @IsBoolean()
