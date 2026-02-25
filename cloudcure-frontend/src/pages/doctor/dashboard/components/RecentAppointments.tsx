@@ -116,16 +116,16 @@ export default function RecentAppointments() {
                                         </TableCell>
                                         <TableCell className="text-right">
                                             {apt.status === 'scheduled' && (
-                                                <Button size="sm" onClick={() => handleStart(apt.id, apt)} className="bg-blue-600 hover:bg-blue-700 text-white">
+                                                <Button size="sm" onClick={() => handleStart(apt._id || apt.id, apt)} className="bg-blue-600 hover:bg-blue-700 text-white">
                                                     <Play className="h-4 w-4 mr-1" /> Start
                                                 </Button>
                                             )}
                                             {apt.status === 'in_progress' && (
                                                 <div className="flex justify-end gap-2">
-                                                    <Button size="sm" variant="destructive" onClick={() => handleTerminate(apt.id)}>
+                                                    <Button size="sm" variant="destructive" onClick={() => handleTerminate(apt._id || apt.id)}>
                                                         <XCircle className="h-4 w-4" />
                                                     </Button>
-                                                    <Button size="sm" onClick={() => handleEnd(apt.id)} className="bg-green-600 hover:bg-green-700 text-white">
+                                                    <Button size="sm" onClick={() => handleEnd(apt._id || apt.id)} className="bg-green-600 hover:bg-green-700 text-white">
                                                         <Square className="h-4 w-4 mr-1" /> Finish
                                                     </Button>
                                                 </div>
