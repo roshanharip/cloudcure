@@ -6,6 +6,6 @@ import { Controller, Get, VERSION_NEUTRAL } from '@nestjs/common';
 export class AppController {
     @Get('healthz')
     getHealth(): string {
-        return 'OK';
+        return 'OK Hello World';
     }
 }
