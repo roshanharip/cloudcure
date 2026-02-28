@@ -41,7 +41,9 @@ async function bootstrap() {
   });
 
   // Versioning
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api', {
+    exclude: ['healthz'],
+  });
   app.enableVersioning({
     type: VersioningType.URI,
     defaultVersion: '1',

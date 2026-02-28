@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CommonModule } from '@common/common.module';
+import { AppController } from './app.controller';
 import { UsersModule } from '@modules/users/users.module';
 import { AuthModule } from '@modules/auth/auth.module';
 import { AppConfigModule } from '@config/app-config.module';
@@ -39,7 +40,7 @@ import { PaymentsModule } from '@modules/payments/payments.module';
     SocketModule,
     PaymentsModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule { }
