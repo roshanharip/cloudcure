@@ -6,7 +6,8 @@ import * as Joi from 'joi';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: 'envs/.env.development',
+      // Removed envFilePath: 'envs/.env.development' so prod ENV vars work on Render.
+      // NestJS ConfigModule automatically falls back to process.env
       validationSchema: Joi.object({
         MONGO_URI: Joi.string().required(),
         JWT_SECRET: Joi.string().required(),
@@ -16,4 +17,4 @@ import * as Joi from 'joi';
   ],
   exports: [ConfigModule],
 })
-export class AppConfigModule {}
+export class AppConfigModule { }
